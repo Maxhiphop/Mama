@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>мама ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background:
+        radial-gradient(circle at top, #2b0000 0%, #120000 35%, #000000 100%);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(255, 0, 64, 0.18), transparent 70%);
+      border-radius: 50%;
+      animation: pulseGlow 4s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .center-text {
+      position: absolute;
+      z-index: 5;
+      color: #ff2b2b;
+      font-size: 88px;
+      font-weight: bold;
+      text-shadow:
+        0 0 10px rgba(255, 0, 0, 0.9),
+        0 0 25px rgba(255, 0, 0, 0.8),
+        0 0 45px rgba(255, 50, 50, 0.7);
+      animation: textPulse 2.5s ease-in-out infinite;
+      user-select: none;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff1a1a;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.7));
+      animation-name: floatUp, sway, heartbeat;
+      animation-timing-function: linear, ease-in-out, ease-in-out;
+      animation-iteration-count: infinite, infinite, infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes sway {
+      0% {
+        margin-left: 0;
+      }
+      25% {
+        margin-left: -20px;
+      }
+      50% {
+        margin-left: 15px;
+      }
+      75% {
+        margin-left: -12px;
+      }
+      100% {
+        margin-left: 0;
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        scale: 1;
+      }
+      25% {
+        scale: 1.12;
+      }
+      50% {
+        scale: 0.95;
+      }
+      75% {
+        scale: 1.08;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    @keyframes textPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.06);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="center-text">Рита ❤️</div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+
+      const size = Math.random() * 30 + 20;
+      const left = Math.random() * 100;
+      const duration = Math.random() * 7 + 7;
+      const swayDuration = Math.random() * 3 + 3;
+      const beatDuration = Math.random() * 1.2 + 0.8;
+
+      heart.style.left = left + "vw";
+      heart.style.bottom = "-40px";
+      heart.style.fontSize = size + "px";
+      heart.style.opacity = "0";
+
+      heart.style.animationDuration = `${duration}s, ${swayDuration}s, ${beatDuration}s`;
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+
+    setInterval(createHeart, 180);
+
+    for (let i = 0; i < 25; i++) {
+      setTimeout(createHeart, i * 150);
+    }
+  </script>
+</body>
+</html>
